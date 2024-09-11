@@ -1,0 +1,65 @@
+package JAVA_GUI;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+
+class Slider_Demo implements ChangeListener {
+    JFrame frame;
+    JPanel panel;
+    JLabel label;
+    JSlider slider;
+
+    Slider_Demo() {
+        frame = new JFrame("Slider Demo");
+        panel = new JPanel();
+        label = new JLabel();
+
+        // Create slider with orientation VERTICAL
+        slider = new JSlider(0, 100, 50);
+        slider.setPreferredSize(new Dimension(400, 300));
+        slider.setPaintTicks(true);
+        slider.setMinorTickSpacing(10);
+        slider.setPaintTrack(true);
+        slider.setMajorTickSpacing(25);
+        slider.setPaintLabels(true);
+        slider.setFont(new Font("MV Boli", Font.PLAIN, 15));
+        label.setFont(new Font("MV Boli", Font.PLAIN, 15));
+        slider.setOrientation(SwingConstants.VERTICAL);
+        slider.addChangeListener(this);
+        label.setForeground(Color.WHITE);
+
+
+        // Customize the panel and position slider manually
+        panel.setPreferredSize(new Dimension(400, 400));
+        panel.setLayout(null); // Disable layout manager for custom positioning
+        panel.setBackground(Color.BLACK); // Set background color to black
+
+        // Set label and slider positions manually
+        slider.setBounds(50, 50, 100, 300); // Adjust position and size
+        label.setBounds(200, 150, 150, 50); // Adjust position of label
+
+        // Add components to panel
+        panel.add(slider);
+        panel.add(label);
+
+        // Frame settings
+        frame.add(panel);
+        frame.setSize(420, 420);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        label.setText("°C = " + slider.getValue());
+    }
+}
+
+public class sliders {
+    public static void main(String[] args) {
+        // Create and display the slider demo
+        new Slider_Demo();
+    }
+}
