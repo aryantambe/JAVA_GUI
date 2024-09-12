@@ -1,0 +1,47 @@
+package JAVA_GUI;
+import javax.swing.*;
+import java.awt.*;
+class pDemo{
+    JFrame frame=new JFrame();
+    JProgressBar jProgressBar=new JProgressBar(0,100);
+    pDemo(){
+        jProgressBar.setValue(0);
+        jProgressBar.setBounds(0,0,420,50);
+        jProgressBar.setStringPainted(true);//adds percentage in the bar
+        jProgressBar.setFont(new Font("MV Boli",Font.BOLD,25));
+        jProgressBar.setForeground(Color.red);
+        jProgressBar.setBackground(Color.BLACK);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        frame.setSize(420,420);
+        frame.add(jProgressBar);
+        frame.setVisible(true);
+        fill();
+    }
+    public void fill(){
+        int count=100;
+        while(count>=0){
+            jProgressBar.setValue(count);
+            try {
+                Thread.sleep(100);
+                count--;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if(jProgressBar.getValue()==0){
+            jProgressBar.setString("omae wa mu shinderu");
+
+        }
+
+    }
+}
+public class progressBar {
+    public static void main(String[] args) {
+        //JProgressBar--> Visual aid to let the user know that an operation is processing
+        pDemo bar=new pDemo();
+
+
+    }
+}
